@@ -2,10 +2,10 @@ package ru.dmitrii;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.dmitrii.SearchService;
 
 public class IntensiveContext {
-    SearchService searchService = new SearchService();
+    private final SearchService searchService = new SearchService();
+    private final DependencyFactory dependencyFactory = new DependencyFactory();
     public String packageName;
     public IntensiveContext(String packageName){
         this.packageName = packageName;
@@ -24,6 +24,11 @@ public class IntensiveContext {
         if (list.size() != 1){
             throw new RuntimeException("больше одного совпадающего класса");
         }
-        return null;
+
+        Class<?> firstClass = list.get(0);
+
+        Object object = dependencyFactory.createObject(firstClass);
+
+        return (T) object;
     }
 }

@@ -26,14 +26,14 @@ public class SearchService {
                 }
             }
         }
-        for (Class<?> c : classList){
-            System.out.println(c.getName());
-        }
+//        for (Class<?> c : classList){
+//            System.out.println(c.getName());
+//        }
         return classList;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        SearchService searchService = new SearchService();
-        searchService.annotatedClasses("ru.dmitrii",IntensiveComponent.class);
-    }
+//    public static void main(String[] args) throws ClassNotFoundException {
+//        SearchService searchService = new SearchService();
+//        searchService.annotatedClasses("ru.dmitrii",IntensiveComponent.class);
+//    }
 }
