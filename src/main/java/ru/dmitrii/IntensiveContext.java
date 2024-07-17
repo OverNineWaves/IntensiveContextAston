@@ -3,14 +3,30 @@ package ru.dmitrii;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Класс для обработки оъектов аннотировнных {@link IntensiveComponent}
+ */
 public class IntensiveContext {
-    private final SearchService searchService = new SearchService();
-    private final DependencyFactory dependencyFactory = new DependencyFactory();
+    private final SearchService searchService;
+    private final DependencyFactory dependencyFactory;
     public String packageName;
+
+    /**
+     * @param packageName передаем имя пакета для поиска аннотированных классов
+     */
     public IntensiveContext(String packageName){
         this.packageName = packageName;
+        this.searchService = new SearchServiceImpl();
+        this.dependencyFactory = new DependencyFactory();
     }
 
+    /**
+     * Метод для получения экземпляра класса
+     * @param type указываем тип объекта
+     * @throws RuntimeException если больше одной реализации
+     * @return экземпляр объектра, которого запрашивали
+     */
     public <T> T getObject(Class<T> type) throws ClassNotFoundException {
 
         List<Class<?>> classList = searchService.annotatedClasses(packageName, IntensiveComponent.class);
